@@ -8,6 +8,22 @@ var indexRouter = require("./routes/index");
 
 var app = express();
 
+// MongoDB setup
+var mongoose = require("mongoose");
+mongoose.Promise = require("bluebird");
+
+/**
+ * Database connection
+ */
+mongoose
+  .connect("mongodb://admin:admin01@ds137498.mlab.com:37498/api-gateway", {
+    promiseLibrary: require("bluebird"),
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log("connection successful"))
+  .catch(err => console.error(err));
+
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
