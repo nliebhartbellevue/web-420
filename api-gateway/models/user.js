@@ -12,6 +12,9 @@ const mongoose = require('mongoose'),
     email: String
   });
 
+// Export user schema to the rest of the application
+const User = (module.exports = mongoose.model('User', UserSchema));
+
 // .add is used to add a new user to the database
 module.exports.add = (user, cb) => {
   user.save(cb);
@@ -22,6 +25,3 @@ module.exports.getById = (id, cb) => {
   let query = { _id: id };
   User.findById(query, cb);
 };
-
-// Export user schema to the rest of the application
-const User = (module.exports = mongoose.model('User', UserSchema));

@@ -28,7 +28,7 @@ exports.user_register = (req, res) => {
         .status(500)
         .send(`There was an error trying to register ${newUser.username}!`);
 
-    let token = jwt.sign({ id: user_id }, config.web.secret, {
+    let token = jwt.sign({ id: user._id }, config.web.secret, {
       expiresIn: 86400 // 24 hours
     });
 
