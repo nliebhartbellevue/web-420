@@ -83,7 +83,7 @@ exports.user_login = (req, res) => {
     if (!passwordIsValid)
       return res.status(401).send({ auth: false, token: null });
 
-    let token = jwt.sign({ id: user_id }, config.web.secret, {
+    let token = jwt.sign({ id: user._id }, config.web.secret, {
       expiresIn: 86400 // Expires in 24 hours
     });
 
