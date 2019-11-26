@@ -4,7 +4,7 @@
  * @date            October 28, 2019
  * @description     This file is used to create the user model and schema
  */
-const mongoose = require('mongoose'),
+const mongoose = require("mongoose"),
   // User Schema
   UserSchema = new mongoose.Schema({
     username: String,
@@ -13,7 +13,7 @@ const mongoose = require('mongoose'),
   });
 
 // Export user schema to the rest of the application
-const User = (module.exports = mongoose.model('User', UserSchema));
+const User = (module.exports = mongoose.model("User", UserSchema));
 
 // .add is used to add a new user to the database
 module.exports.add = (user, cb) => {
@@ -24,4 +24,10 @@ module.exports.add = (user, cb) => {
 module.exports.getById = (id, cb) => {
   let query = { _id: id };
   User.findById(query, cb);
+};
+
+// find users by email address
+module.exports.getOne = (e, cb) => {
+  let query = { email: e };
+  User.findOne(query, cb);
 };
