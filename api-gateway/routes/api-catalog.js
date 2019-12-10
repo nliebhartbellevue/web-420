@@ -7,6 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const auth_controller = require("../controllers/authController");
+const checkToken = require("../check-token");
 
 // POST request for registering a user
 router.post("/auth/register", auth_controller.user_register);
@@ -14,7 +15,7 @@ router.post("/auth/register", auth_controller.user_register);
 router.post("/auth/login", auth_controller.user_login);
 
 // GET request for verifying user token
-router.get("/auth/token", auth_controller.user_token);
+router.get("/auth/token", checkToken, auth_controller.user_token);
 // GET request to allow users to logout and set their token to null and auth to false
 router.get("/auth/logout", auth_controller.user_logout);
 
